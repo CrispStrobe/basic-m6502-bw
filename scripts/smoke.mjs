@@ -8,9 +8,9 @@
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { M6502Machine, EATER6502 } from '../../bw-board/src/m6502-machine.js';
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const bwBoard = process.env.BW_BOARD_DIR || join(__dirname, '..', '..', 'bw-board');
+const { M6502Machine, EATER6502 } = await import(join(bwBoard, 'src', 'm6502-machine.js'));
 const romPath = join(__dirname, '..', 'basic.rom');
 const rom = readFileSync(romPath);
 
